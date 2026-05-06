@@ -1,2 +1,3 @@
 # EasyMeal
-<img width="960" height="1162" alt="Sans-titre-2026-04-20-1909 (3)" src="https://github.com/user-attachments/assets/0ba40545-6261-494b-90e1-460a2390df27" />
+<img width="1830" height="1413" alt="EasyMeal shema" src="https://github.com/user-attachments/assets/4f746056-e564-41e4-9594-6a89262a7727" />
+
