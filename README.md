@@ -1,4 +1,9 @@
 # EasyMeal
+L'objectif principal est de répondre à trois problèmes concrets :
+•	Savoir quoi cuisiner avec ce qu'on a déjà dans son frigo
+•	Organiser la semaine alimentaire sans effort
+•	Réduire le gaspillage alimentaire et optimiser les achats
+
 <img width="1830" height="1413" alt="EasyMeal shema" src="https://github.com/user-attachments/assets/4f746056-e564-41e4-9594-6a89262a7727" />
 
 # Structure du projet
