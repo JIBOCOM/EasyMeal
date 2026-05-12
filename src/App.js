@@ -11,7 +11,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import Navbar from "./components/Navbar.js";
+import Navbar from "./components/Navbar";
 
 // Pages
 import Home       from "./pages/Home";
