@@ -23,7 +23,7 @@ const NAV_SECTIONS = [
   },
 ];
 
-const DEFAULT_BADGES = { fridge: 3, shopping: 7 };
+const DEFAULT_BADGES = { fridge: 0, shopping: 0 };
 
 function getInitials(name = "") {
   return name.split(" ").map((w) => w[0]).join("").toUpperCase().slice(0, 2);
