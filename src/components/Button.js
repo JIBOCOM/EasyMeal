@@ -2,19 +2,6 @@
 import React from "react";
 import "../styles/Button.css";
 
-// ─────────────────────────────────────────────
-// Button
-// Props:
-//   variant  — "primary" | "secondary" | "ghost" | "danger"  (défaut: "primary")
-//   size     — "sm" | "md" | "lg"                             (défaut: "md")
-//   icon     — classe Tabler ex: "ti-plus"                    (optionnel)
-//   iconPos  — "left" | "right"                               (défaut: "left")
-//   disabled — boolean
-//   loading  — boolean (remplace le contenu par un spinner)
-//   onClick  — handler
-//   type     — "button" | "submit" | "reset"                  (défaut: "button")
-//   children — contenu textuel
-// ─────────────────────────────────────────────
 export default function Button({
   variant  = "primary",
   size     = "md",
