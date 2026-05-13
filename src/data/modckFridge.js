@@ -1,0 +1,97 @@
+// mockFridge.js — Données de test pour le frigo (dev uniquement)
+// Remplacé par l'API backend (routes/fridge.js) en production
+
+const mockFridge = [
+  {
+    id: 1,
+    name: "Œufs",
+    category: "Produits laitiers",
+    quantity: 6,
+    unit: "pièces",
+    expirationDate: "2026-05-18",
+    location: "frigo",
+  },
+  {
+    id: 2,
+    name: "Lait entier",
+    category: "Produits laitiers",
+    quantity: 1,
+    unit: "L",
+    expirationDate: "2026-05-15",
+    location: "frigo",
+  },
+  {
+    id: 3,
+    name: "Poulet",
+    category: "Viandes",
+    quantity: 300,
+    unit: "g",
+    expirationDate: "2026-05-14",
+    location: "frigo",
+  },
+  {
+    id: 4,
+    name: "Carottes",
+    category: "Légumes",
+    quantity: 4,
+    unit: "pièces",
+    expirationDate: "2026-05-20",
+    location: "frigo",
+  },
+  {
+    id: 5,
+    name: "Pâtes",
+    category: "Féculents",
+    quantity: 500,
+    unit: "g",
+    expirationDate: null,
+    location: "placard",
+  },
+  {
+    id: 6,
+    name: "Tomates pelées",
+    category: "Conserves",
+    quantity: 2,
+    unit: "boîtes",
+    expirationDate: null,
+    location: "placard",
+  },
+  {
+    id: 7,
+    name: "Parmesan",
+    category: "Fromages",
+    quantity: 80,
+    unit: "g",
+    expirationDate: "2026-05-28",
+    location: "frigo",
+  },
+  {
+    id: 8,
+    name: "Huile d'olive",
+    category: "Condiments",
+    quantity: 1,
+    unit: "bouteille",
+    expirationDate: null,
+    location: "placard",
+  },
+  {
+    id: 9,
+    name: "Épinards",
+    category: "Légumes",
+    quantity: 150,
+    unit: "g",
+    expirationDate: "2026-05-14", // expire bientôt → alerte gaspi
+    location: "frigo",
+  },
+  {
+    id: 10,
+    name: "Yaourt nature",
+    category: "Produits laitiers",
+    quantity: 4,
+    unit: "pots",
+    expirationDate: "2026-05-16",
+    location: "frigo",
+  },
+];
+
+export default mockFridge;
