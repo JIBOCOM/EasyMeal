@@ -4,7 +4,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../App";
-import "./Home.css";
+import "../styles/Home.css";
 
 // ─────────────────────────────────────────────
 // Helpers
