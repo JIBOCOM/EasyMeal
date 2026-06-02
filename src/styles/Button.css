@@ -1,0 +1,103 @@
+.em-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease, background 0.15s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.em-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.em-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ─── Tailles ────────────────────────────────── */
+.em-btn--sm {
+  padding: 6px 13px;
+  font-size: 13px;
+}
+
+.em-btn--sm i {
+  font-size: 15px;
+}
+
+.em-btn--md {
+  padding: 9px 18px;
+  font-size: 14px;
+}
+
+.em-btn--md i {
+  font-size: 16px;
+}
+
+.em-btn--lg {
+  padding: 12px 24px;
+  font-size: 15px;
+}
+
+.em-btn--lg i {
+  font-size: 18px;
+}
+
+/* ─── Variants ───────────────────────────────── */
+.em-btn--primary {
+  background: #2C4A2E;
+  color: #E8D5A3;
+  border: 1.5px solid transparent;
+}
+
+.em-btn--primary:hover:not(:disabled) {
+  filter: brightness(1.18);
+}
+
+.em-btn--secondary {
+  background: transparent;
+  color: #2C4A2E;
+  border: 1.5px solid #2C4A2E;
+}
+
+.em-btn--secondary:hover:not(:disabled) {
+  background: rgba(44, 74, 46, 0.08);
+}
+
+.em-btn--ghost {
+  background: transparent;
+  color: #8C7355;
+  border: 1.5px solid rgba(140, 115, 85, 0.3);
+}
+
+.em-btn--ghost:hover:not(:disabled) {
+  background: #F5EFE3;
+  color: #3B2A1A;
+}
+
+.em-btn--danger {
+  background: #FCEBEB;
+  color: #A32D2D;
+  border: 1.5px solid #F7C1C1;
+}
+
+.em-btn--danger:hover:not(:disabled) {
+  background: #F7C1C1;
+}
+
+/* ─── Spinner ────────────────────────────────── */
+.em-btn__spinner {
+  animation: em-btn-spin 0.7s linear infinite;
+}
+
+@keyframes em-btn-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
