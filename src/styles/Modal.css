@@ -1,0 +1,99 @@
+
+/* ─── Overlay ────────────────────────────────── */
+.em-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 42, 30, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: em-modal-fade-in 0.15s ease;
+}
+
+@keyframes em-modal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Fenêtre ────────────────────────────────── */
+.em-modal {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(140, 115, 85, 0.15);
+  width: 100%;
+  outline: none;
+  animation: em-modal-slide-in 0.18s ease;
+  overflow: hidden;
+}
+
+@keyframes em-modal-slide-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ─── Tailles ────────────────────────────────── */
+.em-modal--sm { max-width: 320px; }
+.em-modal--md { max-width: 440px; }
+.em-modal--lg { max-width: 620px; }
+
+/* ─── Header ─────────────────────────────────── */
+.em-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 0;
+}
+
+.em-modal__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #3B2A1A;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.em-modal__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #8C7355;
+  font-size: 20px;
+  line-height: 1;
+  padding: 2px;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+  display: flex;
+  align-items: center;
+}
+
+.em-modal__close:hover {
+  color: #3B2A1A;
+}
+
+/* ─── Corps ──────────────────────────────────── */
+.em-modal__body {
+  padding: 14px 20px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #8C7355;
+  line-height: 1.65;
+}
+
+/* ─── Divider ────────────────────────────────── */
+.em-modal__divider {
+  height: 1px;
+  background: rgba(140, 115, 85, 0.15);
+  margin: 0 20px;
+}
+
+/* ─── Footer ─────────────────────────────────── */
+.em-modal__footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 14px 20px;
+}

@@ -1,0 +1,231 @@
+/* src/components/Navbar.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=DM+Sans:wght@400;500&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css');
+
+:root {
+  --nav-bg:          #2C4A2E;
+  --nav-accent:      #A8C57A;
+  --nav-gold:        #E8D5A3;
+  --nav-gold-muted:  rgba(232, 213, 163, 0.55);
+  --nav-gold-faint:  rgba(232, 213, 163, 0.35);
+  --nav-divider:     rgba(255, 255, 255, 0.08);
+  --nav-hover-bg:    rgba(255, 255, 255, 0.07);
+  --nav-active-bg:   rgba(232, 213, 163, 0.15);
+  --nav-width:       220px;
+}
+
+.em-nav {
+  width: var(--nav-width);
+  min-width: var(--nav-width);
+  height: 100vh;
+  background: var(--nav-bg);
+  display: flex;
+  flex-direction: column;
+  font-family: 'DM Sans', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.app-main {
+  margin-left: var(--nav-width);
+}
+
+.em-nav__logo {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--nav-divider);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.em-nav__logo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--nav-gold);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.em-nav__logo-sub {
+  font-size: 10px;
+  color: var(--nav-gold-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.em-nav__links {
+  flex: 1;
+  padding: 16px 12px 8px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.em-nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+.em-nav__section {
+  margin-bottom: 8px;
+}
+
+.em-nav__section-label {
+  display: block;
+  font-size: 10px;
+  color: var(--nav-gold-faint);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 12px 6px;
+}
+
+.em-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--nav-gold-muted);
+  font-size: 14px;
+  font-weight: 400;
+  transition: background 0.15s ease, color 0.15s ease;
+  position: relative;
+}
+
+.em-nav__item:hover {
+  background: var(--nav-hover-bg);
+  color: var(--nav-gold);
+}
+
+.em-nav__item--active {
+  background: var(--nav-active-bg);
+  color: var(--nav-gold);
+  font-weight: 500;
+}
+
+.em-nav__item--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--nav-accent);
+  border-radius: 0 3px 3px 0;
+}
+
+.em-nav__item i {
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.em-nav__item-label {
+  flex: 1;
+}
+
+.em-nav__badge {
+  background: var(--nav-accent);
+  color: var(--nav-bg);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 20px;
+  line-height: 1.4;
+}
+
+.em-nav__bottom {
+  padding: 12px;
+  border-top: 1px solid var(--nav-divider);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.em-nav__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.em-nav__user:hover,
+.em-nav__user--active {
+  background: var(--nav-hover-bg);
+}
+
+.em-nav__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--nav-accent);
+  color: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.em-nav__user-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.em-nav__user-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nav-gold);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.em-nav__user-role {
+  font-size: 11px;
+  color: var(--nav-gold-faint);
+}
+
+.em-nav__settings-icon {
+  font-size: 15px;
+  color: var(--nav-gold-faint);
+}
+
+.em-nav__logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--nav-gold-muted);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.15s ease, color 0.15s ease;
+  text-align: left;
+}
+
+.em-nav__logout:hover {
+  background: rgba(255, 80, 80, 0.1);
+  color: #F08080;
+}
+
+.em-nav__logout i {
+  font-size: 17px;
+  width: 20px;
+  text-align: center;
+}
