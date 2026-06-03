@@ -1,7 +1,4 @@
 // src/App.js
-// Créé par P3 — Routeur React, layout global, routes protégées
-// Point d'entrée de toute la navigation de l'app
-
 import React, { useState, useEffect, createContext, useContext } from "react";
 import {
   BrowserRouter as Router,
@@ -14,19 +11,20 @@ import {
 import Navbar from "./components/Navbar";
 
 // Pages
-import Home       from "./pages/Home";
-import Planning   from "./pages/Planning";
-import Recipes    from "./pages/Recipes";
-import Fridge     from "./pages/Fridge";
-import Shopping   from "./pages/Shopping";
-import Nutrition  from "./pages/Nutrition";
-import CookMode   from "./pages/CookMode";
-import Profile    from "./pages/Profile";
+import Login     from "./pages/Login";
+import Home      from "./pages/Home";
+import Planning  from "./pages/Planning";
+import Recipes   from "./pages/Recipes";
+import Fridge    from "./pages/Fridge";
+import Shopping  from "./pages/Shopping";
+import Nutrition from "./pages/Nutrition";
+import CookMode  from "./pages/CookMode";
+import Profile   from "./pages/Profile";
 
 import "./styles/global.css";
 
 // ─────────────────────────────────────────────
-// Contexte Auth — partagé dans toute l'app
+// Contexte Auth
 // ─────────────────────────────────────────────
 export const AuthContext = createContext(null);
 
@@ -35,7 +33,7 @@ export function useAuth() {
 }
 
 // ─────────────────────────────────────────────
-// Route protégée — redirige si non connecté
+// Route protégée
 // ─────────────────────────────────────────────
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
@@ -53,38 +51,41 @@ function ProtectedRoute({ children }) {
 // ─────────────────────────────────────────────
 function AppLayout({ children }) {
   const location = useLocation();
-
-  // CookMode = plein écran, pas de navbar
-  const hideNavbar = location.pathname.startsWith("/cook");
+  const noNavbar =
+    location.pathname.startsWith("/cook") ||
+    location.pathname === "/login"        ||
+    location.pathname === "/register";
 
   return (
     <>
-      {!hideNavbar && <Navbar />}
-      <main className="app-main">{children}</main>
+      {!noNavbar && <Navbar />}
+      <main className={noNavbar ? "app-main app-main--full" : "app-main"}>
+        {children}
+      </main>
     </>
   );
 }
 
 // ─────────────────────────────────────────────
-// App — Provider auth + Router + Routes
+// App
 // ─────────────────────────────────────────────
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser]               = useState(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
 
-  // Vérifie si un token est déjà stocké au démarrage
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       // TODO (P1) : valider le token via GET /api/profile
-      // Pour l'instant on considère le token valide s'il existe
       setUser({ token });
     }
     setLoadingAuth(false);
   }, []);
 
   const login = (userData) => {
-    localStorage.setItem("token", userData.token);
+    // userData = { token, user: { id, name, email } }  ← format renvoyé par le backend
+    const token = userData.token ?? userData;
+    localStorage.setItem("token", token);
     setUser(userData);
   };
 
@@ -100,7 +101,6 @@ export default function App() {
     logout,
   };
 
-  // Évite un flash de redirection pendant la vérification du token
   if (loadingAuth) return null;
 
   return (
@@ -109,45 +109,36 @@ export default function App() {
         <AppLayout>
           <Routes>
 
-            {/* ── Routes publiques ── */}
-            <Route path="/login"    element={<div>Page Login — à implémenter (P2)</div>} />
-            <Route path="/register" element={<div>Page Register — à implémenter (P2)</div>} />
+            {/* ── Publiques ── */}
+            <Route path="/login"    element={<Login />} />
+            <Route path="/register" element={<div>Page Register — à implémenter</div>} />
 
-            {/* ── Routes protégées ── */}
+            {/* ── Protégées ── */}
             <Route path="/" element={
               <ProtectedRoute><Home /></ProtectedRoute>
             } />
-
             <Route path="/planning" element={
               <ProtectedRoute><Planning /></ProtectedRoute>
             } />
-
             <Route path="/recipes" element={
               <ProtectedRoute><Recipes /></ProtectedRoute>
             } />
-
             <Route path="/fridge" element={
               <ProtectedRoute><Fridge /></ProtectedRoute>
             } />
-
             <Route path="/shopping" element={
               <ProtectedRoute><Shopping /></ProtectedRoute>
             } />
-
             <Route path="/nutrition" element={
               <ProtectedRoute><Nutrition /></ProtectedRoute>
             } />
-
-            {/* CookMode reçoit l'id de la recette en param */}
             <Route path="/cook/:id" element={
               <ProtectedRoute><CookMode /></ProtectedRoute>
             } />
-
             <Route path="/profile" element={
               <ProtectedRoute><Profile /></ProtectedRoute>
             } />
 
-            {/* Fallback — toute URL inconnue → accueil */}
             <Route path="*" element={<Navigate to="/" replace />} />
 
           </Routes>
