@@ -1,50 +1,90 @@
-// routes/planning.js — Planning semaine + Surprise me
-const express     = require('express');
-const Planning    = require('../models/Planning');
-const surpriseSvc = require('../services/surprise');
+// backend/routes/planning.js
+const express = require("express");
+const router  = express.Router();
+const db      = require("../db");
+const auth    = require("../middleware/auth");
 
-const router = express.Router();
-
-// GET /api/planning?week=2025-05-12
-router.get('/', async (req, res, next) => {
+// GET /api/planning?week_start=YYYY-MM-DD
+router.get("/", auth, async (req, res) => {
   try {
-    const weekStart = req.query.week || getMondayOfCurrentWeek();
-    const rows = await Planning.findByWeek(req.user.id, weekStart);
-    res.json(rows);
-  } catch (err) { next(err); }
+    const userId = req.user.id;
+
+    // Calcule le lundi de la semaine courante si non fourni
+    let weekStart = req.query.week_start;
+    if (!weekStart) {
+      const now = new Date();
+      const day = now.getDay() === 0 ? 6 : now.getDay() - 1;
+      const mon = new Date(now);
+      mon.setDate(now.getDate() - day);
+      weekStart = mon.toISOString().split("T")[0];
+    }
+
+    const result = await db.query(
+      `SELECT
+         p.id,
+         p.day_of_week,
+         p.meal_slot,
+         p.servings,
+         p.is_surprise,
+         r.id          AS recipe_id,
+         r.title,
+         r.calories,
+         r.prep_time_min,
+         r.cook_time_min,
+         r.image_url
+       FROM   planning p
+       JOIN   recipes  r ON r.id = p.recipe_id
+       WHERE  p.user_id    = $1
+         AND  p.week_start = $2
+       ORDER  BY p.day_of_week,
+                 CASE p.meal_slot
+                   WHEN 'breakfast' THEN 1
+                   WHEN 'lunch'     THEN 2
+                   WHEN 'dinner'    THEN 3
+                 END`,
+      [userId, weekStart]
+    );
+
+    res.json(result.rows); // tableau plat — le front le convertit en grille
+  } catch (err) {
+    console.error("GET /planning error:", err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
 });
 
-// POST /api/planning — ajouter/déplacer une recette dans le planning
-router.post('/', async (req, res, next) => {
+// DELETE /api/planning/:id
+router.delete("/:id", auth, async (req, res) => {
   try {
-    const entry = await Planning.upsert({ ...req.body, user_id: req.user.id });
-    res.status(201).json(entry);
-  } catch (err) { next(err); }
+    await db.query(
+      "DELETE FROM planning WHERE id = $1 AND user_id = $2",
+      [req.params.id, req.user.id]
+    );
+    res.status(204).send();
+  } catch (err) {
+    console.error("DELETE /planning error:", err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
 });
 
-// POST /api/planning/surprise — remplir automatiquement la semaine
-router.post('/surprise', async (req, res, next) => {
+// POST /api/planning
+router.post("/", auth, async (req, res) => {
   try {
-    const weekStart = req.body.week || getMondayOfCurrentWeek();
-    const plan = await surpriseSvc.fillWeek(req.user.id, weekStart);
-    res.json(plan);
-  } catch (err) { next(err); }
-});
+    const { recipe_id, week_start, day_of_week, meal_slot, servings = 2 } = req.body;
 
-// DELETE /api/planning/:id — retirer une entrée du planning
-router.delete('/:id', async (req, res, next) => {
-  try {
-    const ok = await Planning.delete(req.params.id, req.user.id);
-    if (!ok) return res.status(404).json({ error: 'Entrée introuvable' });
-    res.status(204).end();
-  } catch (err) { next(err); }
-});
+    const result = await db.query(
+      `INSERT INTO planning (user_id, recipe_id, week_start, day_of_week, meal_slot, servings)
+       VALUES ($1, $2, $3, $4, $5, $6)
+       ON CONFLICT (user_id, week_start, day_of_week, meal_slot)
+       DO UPDATE SET recipe_id = $2, servings = $6
+       RETURNING *`,
+      [req.user.id, recipe_id, week_start, day_of_week, meal_slot, servings]
+    );
 
-function getMondayOfCurrentWeek() {
-  const d = new Date();
-  const day = d.getDay() || 7;
-  d.setDate(d.getDate() - day + 1);
-  return d.toISOString().split('T')[0];
-}
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("POST /planning error:", err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
 
 module.exports = router;
