@@ -1,0 +1,229 @@
+[
+  {
+    "id": 1,
+    "name": "Pâtes carbonara",
+    "description": "Un classique italien crémeux avec lardons et parmesan.",
+    "image": "/assets/recipe_images/carbonara.jpg",
+    "prepTime": 20,
+    "calories": 620,
+    "tags": [],
+    "difficulty": "Facile",
+    "servings": 2,
+    "ingredients": ["Pâtes", "Lardons", "Œufs", "Parmesan", "Poivre"],
+    "steps": [
+      "Faire cuire les pâtes al dente dans une grande casserole d'eau salée.",
+      "Faire revenir les lardons à sec dans une poêle jusqu'à ce qu'ils soient dorés.",
+      "Dans un bol, battre les œufs avec le parmesan râpé et du poivre.",
+      "Hors du feu, mélanger les pâtes égouttées avec les lardons puis verser le mélange œufs/parmesan.",
+      "Remuer rapidement pour créer une sauce crémeuse. Servir immédiatement."
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Poulet rôti aux herbes",
+    "description": "Poulet juteux parfumé aux herbes de Provence et à l'ail.",
+    "image": "/assets/recipe_images/poulet_roti.jpg",
+    "prepTime": 15,
+    "calories": 480,
+    "tags": ["Sans gluten", "Sans lactose"],
+    "difficulty": "Facile",
+    "servings": 4,
+    "ingredients": ["Poulet", "Ail", "Herbes de Provence", "Huile d'olive", "Sel", "Poivre", "Citron"],
+    "steps": [
+      "Préchauffer le four à 200°C.",
+      "Frotter le poulet avec l'huile d'olive, l'ail écrasé, les herbes, le sel et le poivre.",
+      "Glisser des rondelles de citron sous la peau.",
+      "Enfourner 1h15 en arrosant toutes les 20 minutes.",
+      "Laisser reposer 10 minutes avant de découper."
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Soupe de lentilles au curry",
+    "description": "Soupe réconfortante, vegan et pleine de protéines.",
+    "image": "/assets/recipe_images/soupe_lentilles.jpg",
+    "prepTime": 30,
+    "calories": 310,
+    "tags": ["Vegan", "Végétarien", "Sans gluten", "Sans lactose"],
+    "difficulty": "Facile",
+    "servings": 4,
+    "ingredients": ["Lentilles", "Oignons", "Ail", "Curry", "Tomates pelées en boîte", "Bouillon de légumes", "Huile d'olive"],
+    "steps": [
+      "Faire revenir les oignons émincés et l'ail dans l'huile d'olive.",
+      "Ajouter le curry et remuer 1 minute.",
+      "Incorporer les lentilles rincées, les tomates et le bouillon.",
+      "Laisser mijoter 25 minutes jusqu'à ce que les lentilles soient tendres.",
+      "Mixer partiellement et ajuster l'assaisonnement."
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Omelette aux champignons et épinards",
+    "description": "Omelette rapide et nutritive pour un déjeuner express.",
+    "image": "/assets/recipe_images/omelette.jpg",
+    "prepTime": 12,
+    "calories": 290,
+    "tags": ["Végétarien", "Sans gluten", "Sans lactose"],
+    "difficulty": "Facile",
+    "servings": 1,
+    "ingredients": ["Œufs", "Champignons", "Épinards", "Sel", "Poivre", "Huile d'olive"],
+    "steps": [
+      "Faire revenir les champignons tranchés dans l'huile d'olive 3 minutes.",
+      "Ajouter les épinards et cuire jusqu'à ce qu'ils tombent.",
+      "Battre les œufs avec sel et poivre, verser dans la poêle.",
+      "Plier l'omelette à mi-cuisson. Servir immédiatement."
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Riz sauté au saumon et légumes",
+    "description": "Un plat complet inspiré de la cuisine asiatique.",
+    "image": "/assets/recipe_images/riz_saumon.jpg",
+    "prepTime": 25,
+    "calories": 520,
+    "tags": ["Sans lactose"],
+    "difficulty": "Moyen",
+    "servings": 2,
+    "ingredients": ["Riz", "Saumon", "Carottes", "Poivrons", "Sauce soja", "Ail", "Huile de tournesol"],
+    "steps": [
+      "Cuire le riz et laisser refroidir.",
+      "Couper le saumon en dés et faire revenir à feu vif 3 minutes.",
+      "Dans la même poêle, faire sauter les légumes taillés en brunoise.",
+      "Ajouter le riz froid, la sauce soja et l'ail émincé.",
+      "Mélanger à feu vif 3 minutes. Servir chaud."
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Gratin de courgettes",
+    "description": "Gratin végétarien fondant avec du gruyère bien doré.",
+    "image": "/assets/recipe_images/gratin_courgettes.jpg",
+    "prepTime": 45,
+    "calories": 380,
+    "tags": ["Végétarien", "Sans gluten"],
+    "difficulty": "Facile",
+    "servings": 3,
+    "ingredients": ["Courgettes", "Œufs", "Crème fraîche", "Gruyère râpé", "Ail", "Sel", "Poivre"],
+    "steps": [
+      "Préchauffer le four à 180°C.",
+      "Couper les courgettes en rondelles et les faire revenir avec l'ail.",
+      "Battre les œufs avec la crème fraîche, saler, poivrer.",
+      "Disposer les courgettes dans un plat, verser l'appareil, couvrir de gruyère.",
+      "Enfourner 35 minutes jusqu'à dorure."
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Buddha bowl quinoa-pois chiches",
+    "description": "Bowl coloré, rassasiant et 100% vegan.",
+    "image": "/assets/recipe_images/buddha_bowl.jpg",
+    "prepTime": 20,
+    "calories": 450,
+    "tags": ["Vegan", "Végétarien", "Sans gluten", "Sans lactose"],
+    "difficulty": "Facile",
+    "servings": 2,
+    "ingredients": ["Quinoa", "Pois chiches", "Épinards", "Carottes", "Citron", "Huile d'olive", "Sel", "Paprika"],
+    "steps": [
+      "Cuire le quinoa selon les instructions du paquet.",
+      "Égoutter et rincer les pois chiches, les rôtir au four avec paprika et huile 15 minutes.",
+      "Râper les carottes, laver les épinards.",
+      "Assembler le bowl : quinoa, pois chiches rôtis, légumes.",
+      "Arroser d'huile d'olive et de jus de citron."
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Hachis parmentier",
+    "description": "Le grand classique du dimanche, bœuf et purée gratinée.",
+    "image": "/assets/recipe_images/hachis_parmentier.jpg",
+    "prepTime": 55,
+    "calories": 580,
+    "tags": [],
+    "difficulty": "Moyen",
+    "servings": 4,
+    "ingredients": ["Bœuf haché", "Pommes de terre", "Oignons", "Beurre", "Lait entier", "Gruyère râpé", "Sel", "Poivre"],
+    "steps": [
+      "Faire cuire les pommes de terre et préparer une purée avec beurre et lait.",
+      "Faire revenir les oignons puis le bœuf haché, assaisonner.",
+      "Disposer la viande dans un plat, couvrir de purée, parsemer de gruyère.",
+      "Enfourner à 200°C pendant 20 minutes jusqu'à gratinage.",
+      "Laisser reposer 5 minutes avant de servir."
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Poulet au curry et riz basmati",
+    "description": "Curry doux et parfumé avec du lait de coco.",
+    "image": "/assets/recipe_images/curry_poulet.jpg",
+    "prepTime": 35,
+    "calories": 540,
+    "tags": ["Sans gluten", "Sans lactose"],
+    "difficulty": "Moyen",
+    "servings": 3,
+    "ingredients": ["Poulet", "Riz", "Oignons", "Ail", "Curry", "Tomates pelées en boîte", "Huile d'olive", "Sel"],
+    "steps": [
+      "Faire revenir les oignons et l'ail dans l'huile.",
+      "Ajouter le poulet coupé en morceaux et dorer sur toutes les faces.",
+      "Incorporer le curry, les tomates pelées et laisser mijoter 20 minutes.",
+      "Cuire le riz basmati en parallèle.",
+      "Servir le curry sur le riz."
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Salade niçoise",
+    "description": "Salade fraîche et complète pour les beaux jours.",
+    "image": "/assets/recipe_images/salade_nicoise.jpg",
+    "prepTime": 15,
+    "calories": 340,
+    "tags": ["Sans gluten", "Sans lactose"],
+    "difficulty": "Facile",
+    "servings": 2,
+    "ingredients": ["Thon en boîte", "Œufs", "Tomates", "Moutarde", "Huile d'olive", "Citron", "Sel", "Poivre"],
+    "steps": [
+      "Faire cuire les œufs durs (10 minutes), les écaler et couper en quartiers.",
+      "Couper les tomates en quartiers.",
+      "Préparer la vinaigrette avec moutarde, huile d'olive, citron, sel et poivre.",
+      "Assembler la salade : tomates, thon émietté, œufs.",
+      "Arroser de vinaigrette et servir frais."
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Tarte aux légumes",
+    "description": "Tarte rustique aux poivrons, courgettes et mozzarella.",
+    "image": "/assets/recipe_images/tarte_legumes.jpg",
+    "prepTime": 50,
+    "calories": 420,
+    "tags": ["Végétarien"],
+    "difficulty": "Moyen",
+    "servings": 4,
+    "ingredients": ["Farine", "Beurre", "Œufs", "Poivrons", "Courgettes", "Mozzarella", "Sel", "Herbes de Provence"],
+    "steps": [
+      "Préparer la pâte brisée avec farine, beurre, une pincée de sel et un peu d'eau. Réfrigérer 30 min.",
+      "Faire revenir les légumes coupés en dés avec les herbes.",
+      "Foncer un moule avec la pâte, piquer le fond.",
+      "Garnir avec les légumes et la mozzarella tranchée.",
+      "Enfourner à 180°C pendant 30 minutes."
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Soupe de brocoli",
+    "description": "Velouté de brocoli léger et réconfortant.",
+    "image": "/assets/recipe_images/soupe_brocoli.jpg",
+    "prepTime": 25,
+    "calories": 180,
+    "tags": ["Vegan", "Végétarien", "Sans gluten", "Sans lactose"],
+    "difficulty": "Facile",
+    "servings": 3,
+    "ingredients": ["Brocoli", "Oignons", "Ail", "Bouillon de légumes", "Huile d'olive", "Sel", "Poivre"],
+    "steps": [
+      "Faire revenir les oignons et l'ail dans l'huile d'olive.",
+      "Ajouter le brocoli coupé en fleurettes et le bouillon.",
+      "Laisser cuire 15 minutes à feu moyen.",
+      "Mixer jusqu'à obtenir un velouté lisse.",
+      "Assaisonner et servir avec un filet d'huile d'olive."
+    ]
+  }
+]
