@@ -1,7 +1,4 @@
 // src/App.js
-// Routeur React, layout global
-// Auth géré en dehors de ce projet — utilisateur toujours considéré connecté
-
 import React, { useState, useEffect, createContext, useContext } from "react";
 import {
   BrowserRouter as Router,
@@ -14,6 +11,7 @@ import {
 import Navbar from "./components/Navbar";
 
 // Pages
+import Login     from "./pages/Login";
 import Home      from "./pages/Home";
 import Planning  from "./pages/Planning";
 import Recipes   from "./pages/Recipes";
@@ -27,10 +25,6 @@ import "./styles/global.css";
 
 // ─────────────────────────────────────────────
 // Contexte Auth
-// Pas de login/register dans ce projet.
-// Le token est injecté par le système d'auth externe.
-// TODO (P1) : remplacer setUser({ token: "dev" }) par
-//             la validation du token via GET /api/profile
 // ─────────────────────────────────────────────
 export const AuthContext = createContext(null);
 
@@ -39,17 +33,35 @@ export function useAuth() {
 }
 
 // ─────────────────────────────────────────────
-// Layout — Navbar + contenu
-// CookMode = plein écran, pas de navbar
+// Route protégée
+// ─────────────────────────────────────────────
+function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+}
+
+// ─────────────────────────────────────────────
+// Layout principal — Navbar + contenu
 // ─────────────────────────────────────────────
 function AppLayout({ children }) {
   const location = useLocation();
-  const hideNavbar = location.pathname.startsWith("/cook");
+  const noNavbar =
+    location.pathname.startsWith("/cook") ||
+    location.pathname === "/login"        ||
+    location.pathname === "/register";
 
   return (
     <>
-      {!hideNavbar && <Navbar />}
-      <main className="app-main">{children}</main>
+      {!noNavbar && <Navbar />}
+      <main className={noNavbar ? "app-main app-main--full" : "app-main"}>
+        {children}
+      </main>
     </>
   );
 }
@@ -58,60 +70,37 @@ function AppLayout({ children }) {
 // App
 // ─────────────────────────────────────────────
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser]               = useState(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
 
   useEffect(() => {
-    async function initAuth() {
-      try {
-        const token = localStorage.getItem("token");
-
-        if (token) {
-          // TODO (P1) : valider le token via GET /api/profile
-          // const res  = await fetch("/api/profile", {
-          //   headers: { Authorization: `Bearer ${token}` }
-          // });
-          // const data = await res.json();
-          // setUser({ token, ...data });
-
-          // Pour l'instant : token accepté tel quel
-          setUser({ token });
-        } else {
-          // Pas de token — on crée un utilisateur anonyme
-          // pour que toutes les pages restent accessibles
-          // TODO (P1) : remplacer par une vraie gestion du token
-          setUser({ token: "anonymous" });
-        }
-      } catch (err) {
-        // En cas d'erreur réseau, on reste accessible quand même
-        setUser({ token: "anonymous" });
-      } finally {
-        setLoadingAuth(false);
-      }
+    const token = localStorage.getItem("token");
+    if (token) {
+      // TODO (P1) : valider le token via GET /api/profile
+      setUser({ token });
     }
-
-    initAuth();
+    setLoadingAuth(false);
   }, []);
 
   const login = (userData) => {
-    localStorage.setItem("token", userData.token);
+    // userData = { token, user: { id, name, email } }  ← format renvoyé par le backend
+    const token = userData.token ?? userData;
+    localStorage.setItem("token", token);
     setUser(userData);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-    // Pas de redirection vers /login — on remet un user anonyme
-    setUser({ token: "anonymous" });
+    setUser(null);
   };
 
   const authValue = {
     user,
-    isAuthenticated: true, // toujours vrai — auth géré en externe
+    isAuthenticated: !!user,
     login,
     logout,
   };
 
-  // Évite un flash pendant l'init
   if (loadingAuth) return null;
 
   return (
@@ -120,18 +109,36 @@ export default function App() {
         <AppLayout>
           <Routes>
 
-            <Route path="/"          element={<Home />}      />
-            <Route path="/planning"  element={<Planning />}  />
-            <Route path="/recipes"   element={<Recipes />}   />
-            <Route path="/fridge"    element={<Fridge />}    />
-            <Route path="/shopping"  element={<Shopping />}  />
-            <Route path="/nutrition" element={<Nutrition />} />
-            <Route path="/profile"   element={<Profile />}   />
+            {/* ── Publiques ── */}
+            <Route path="/login"    element={<Login />} />
+            <Route path="/register" element={<div>Page Register — à implémenter</div>} />
 
-            {/* CookMode reçoit l'id de la recette en param */}
-            <Route path="/cook/:id"  element={<CookMode />}  />
+            {/* ── Protégées ── */}
+            <Route path="/" element={
+              <ProtectedRoute><Home /></ProtectedRoute>
+            } />
+            <Route path="/planning" element={
+              <ProtectedRoute><Planning /></ProtectedRoute>
+            } />
+            <Route path="/recipes" element={
+              <ProtectedRoute><Recipes /></ProtectedRoute>
+            } />
+            <Route path="/fridge" element={
+              <ProtectedRoute><Fridge /></ProtectedRoute>
+            } />
+            <Route path="/shopping" element={
+              <ProtectedRoute><Shopping /></ProtectedRoute>
+            } />
+            <Route path="/nutrition" element={
+              <ProtectedRoute><Nutrition /></ProtectedRoute>
+            } />
+            <Route path="/cook/:id" element={
+              <ProtectedRoute><CookMode /></ProtectedRoute>
+            } />
+            <Route path="/profile" element={
+              <ProtectedRoute><Profile /></ProtectedRoute>
+            } />
 
-            {/* Fallback — toute URL inconnue → accueil */}
             <Route path="*" element={<Navigate to="/" replace />} />
 
           </Routes>
