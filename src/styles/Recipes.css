@@ -1,0 +1,127 @@
+/* src/styles/Recipes.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=DM+Sans:wght@400;500&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css');
+
+:root {
+  --rc-bg:          #F5EFE3;
+  --rc-white:       #ffffff;
+  --rc-green:       #2C4A2E;
+  --rc-green-light: #A8C57A;
+  --rc-gold:        #E8D5A3;
+  --rc-brown:       #3B2A1A;
+  --rc-muted:       #8C7355;
+  --rc-border:      rgba(140, 115, 85, 0.15);
+  --rc-warn:        #C47A2A;
+}
+
+/* ─── Page ───────────────────────────────────── */
+.recipes {
+  background: var(--rc-bg);
+  padding: 28px 32px;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ─── Loading ────────────────────────────────── */
+.recipes__loading {
+  padding: 48px 32px;
+  font-size: 14px;
+  color: var(--rc-muted);
+  text-align: center;
+}
+
+/* ─── Header ─────────────────────────────────── */
+.recipes__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.recipes__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: var(--rc-brown);
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ─── Barre de recherche ─────────────────────── */
+.recipes__search {
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--rc-border);
+  background: var(--rc-white);
+  font-size: 14px;
+  color: var(--rc-brown);
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  width: 260px;
+  transition: border-color 0.15s ease;
+}
+
+.recipes__search:focus {
+  border-color: var(--rc-green-light);
+}
+
+.recipes__search::placeholder {
+  color: rgba(140, 115, 85, 0.5);
+}
+
+/* ─── Tabs ───────────────────────────────────── */
+.recipes__tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.recipes__tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--rc-border);
+  background: var(--rc-white);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--rc-muted);
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.recipes__tab:hover {
+  border-color: var(--rc-green-light);
+  color: var(--rc-brown);
+}
+
+.recipes__tab.active {
+  background: var(--rc-green);
+  color: var(--rc-gold);
+  border-color: var(--rc-green);
+  font-weight: 500;
+}
+
+/* ─── Grille recettes ────────────────────────── */
+.recipes__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* ─── Wrapper carte (RecipeCard + MissingBadge) ─ */
+.recipes__card-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── État vide ──────────────────────────────── */
+.recipes__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 16px;
+  font-size: 14px;
+  color: var(--rc-muted);
+}
