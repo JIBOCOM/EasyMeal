@@ -1,0 +1,386 @@
+[
+  {
+    "id": 1,
+    "name": "Poulet",
+    "category": "Viandes & Poissons",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Boucherie"
+  },
+  {
+    "id": 2,
+    "name": "Bœuf haché",
+    "category": "Viandes & Poissons",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Boucherie"
+  },
+  {
+    "id": 3,
+    "name": "Saumon",
+    "category": "Viandes & Poissons",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Poissonnerie"
+  },
+  {
+    "id": 4,
+    "name": "Thon en boîte",
+    "category": "Viandes & Poissons",
+    "location": "placard",
+    "unit": "boîte",
+    "rayon": "Conserves"
+  },
+  {
+    "id": 5,
+    "name": "Lardons",
+    "category": "Viandes & Poissons",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Charcuterie"
+  },
+  {
+    "id": 6,
+    "name": "Œufs",
+    "category": "Produits laitiers",
+    "location": "frigo",
+    "unit": "pièces",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 7,
+    "name": "Lait entier",
+    "category": "Produits laitiers",
+    "location": "frigo",
+    "unit": "L",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 8,
+    "name": "Beurre",
+    "category": "Produits laitiers",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 9,
+    "name": "Crème fraîche",
+    "category": "Produits laitiers",
+    "location": "frigo",
+    "unit": "ml",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 10,
+    "name": "Parmesan",
+    "category": "Fromages",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 11,
+    "name": "Gruyère râpé",
+    "category": "Fromages",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 12,
+    "name": "Mozzarella",
+    "category": "Fromages",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 13,
+    "name": "Yaourt nature",
+    "category": "Produits laitiers",
+    "location": "frigo",
+    "unit": "pots",
+    "rayon": "Crèmerie"
+  },
+  {
+    "id": 14,
+    "name": "Carottes",
+    "category": "Légumes",
+    "location": "frigo",
+    "unit": "pièces",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 15,
+    "name": "Oignons",
+    "category": "Légumes",
+    "location": "placard",
+    "unit": "pièces",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 16,
+    "name": "Ail",
+    "category": "Légumes",
+    "location": "placard",
+    "unit": "gousses",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 17,
+    "name": "Tomates",
+    "category": "Légumes",
+    "location": "frigo",
+    "unit": "pièces",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 18,
+    "name": "Épinards",
+    "category": "Légumes",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 19,
+    "name": "Courgettes",
+    "category": "Légumes",
+    "location": "frigo",
+    "unit": "pièces",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 20,
+    "name": "Poivrons",
+    "category": "Légumes",
+    "location": "frigo",
+    "unit": "pièces",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 21,
+    "name": "Champignons",
+    "category": "Légumes",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 22,
+    "name": "Pommes de terre",
+    "category": "Légumes",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 23,
+    "name": "Brocoli",
+    "category": "Légumes",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 24,
+    "name": "Citron",
+    "category": "Fruits",
+    "location": "frigo",
+    "unit": "pièces",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 25,
+    "name": "Banane",
+    "category": "Fruits",
+    "location": "placard",
+    "unit": "pièces",
+    "rayon": "Fruits & Légumes"
+  },
+  {
+    "id": 26,
+    "name": "Pâtes",
+    "category": "Féculents",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 27,
+    "name": "Riz",
+    "category": "Féculents",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 28,
+    "name": "Quinoa",
+    "category": "Féculents",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 29,
+    "name": "Lentilles",
+    "category": "Légumineuses",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 30,
+    "name": "Pois chiches",
+    "category": "Légumineuses",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 31,
+    "name": "Tomates pelées en boîte",
+    "category": "Conserves",
+    "location": "placard",
+    "unit": "boîte",
+    "rayon": "Conserves"
+  },
+  {
+    "id": 32,
+    "name": "Concentré de tomate",
+    "category": "Conserves",
+    "location": "placard",
+    "unit": "tube",
+    "rayon": "Conserves"
+  },
+  {
+    "id": 33,
+    "name": "Huile d'olive",
+    "category": "Condiments",
+    "location": "placard",
+    "unit": "bouteille",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 34,
+    "name": "Huile de tournesol",
+    "category": "Condiments",
+    "location": "placard",
+    "unit": "bouteille",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 35,
+    "name": "Sel",
+    "category": "Condiments",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 36,
+    "name": "Poivre",
+    "category": "Condiments",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 37,
+    "name": "Paprika",
+    "category": "Épices",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 38,
+    "name": "Cumin",
+    "category": "Épices",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 39,
+    "name": "Curry",
+    "category": "Épices",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 40,
+    "name": "Herbes de Provence",
+    "category": "Épices",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 41,
+    "name": "Farine",
+    "category": "Boulangerie & Pâtisserie",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 42,
+    "name": "Sucre",
+    "category": "Boulangerie & Pâtisserie",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 43,
+    "name": "Levure chimique",
+    "category": "Boulangerie & Pâtisserie",
+    "location": "placard",
+    "unit": "sachet",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 44,
+    "name": "Pain de mie",
+    "category": "Boulangerie & Pâtisserie",
+    "location": "placard",
+    "unit": "paquet",
+    "rayon": "Boulangerie"
+  },
+  {
+    "id": 45,
+    "name": "Bouillon de légumes",
+    "category": "Conserves",
+    "location": "placard",
+    "unit": "cube",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 46,
+    "name": "Sauce soja",
+    "category": "Condiments",
+    "location": "placard",
+    "unit": "ml",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 47,
+    "name": "Miel",
+    "category": "Condiments",
+    "location": "placard",
+    "unit": "g",
+    "rayon": "Épicerie"
+  },
+  {
+    "id": 48,
+    "name": "Moutarde",
+    "category": "Condiments",
+    "location": "frigo",
+    "unit": "g",
+    "rayon": "Épicerie"
+  }
+]
