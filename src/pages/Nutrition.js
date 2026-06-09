@@ -1,7 +1,7 @@
 // src/pages/Nutrition.js
 import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../App";
-import "./Nutrition.css";
+import "../styles/Nutrition.css";
 
 const DAYS_SHORT = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
 
