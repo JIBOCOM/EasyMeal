@@ -1,24 +1,163 @@
 // src/pages/Nutrition.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../App";
 import "../styles/Nutrition.css";
 
 const DAYS_SHORT = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
 
-function MacroBar({ label, value, max, color }) {
-  const pct = max > 0 ? Math.min((value / max) * 100, 100) : 0;
+const MACRO_CONFIG = [
+  { key: "glucides",  label: "Glucides",  color: "#639922", border: "#3B6D11" },
+  { key: "proteines", label: "Protéines", color: "#378ADD", border: "#185FA5" },
+  { key: "lipides",   label: "Lipides",   color: "#BA7517", border: "#633806" },
+];
+
+// ─────────────────────────────────────────────
+// MacroDonut — donut Chart.js + barres détaillées
+// Remplace l'ancienne MacroBar
+// ─────────────────────────────────────────────
+function MacroDonut({ today, goals }) {
+  const canvasRef = useRef(null);
+  const chartRef  = useRef(null);
+
+  const values = MACRO_CONFIG.map(m => today[m.key] ?? 0);
+  const total  = values.reduce((s, v) => s + v, 0);
+  const hasData = total > 0;
+
+  useEffect(() => {
+    // Charge Chart.js dynamiquement si pas encore présent
+    if (!window.Chart) {
+      const script = document.createElement("script");
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js";
+      script.onload = () => buildChart();
+      document.head.appendChild(script);
+    } else {
+      buildChart();
+    }
+
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+        chartRef.current = null;
+      }
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [total]);
+
+  function buildChart() {
+    if (!canvasRef.current || !window.Chart) return;
+    if (chartRef.current) {
+      chartRef.current.destroy();
+      chartRef.current = null;
+    }
+
+    const emptyColor = "#E8E3DA";
+    const data    = hasData ? values       : [1, 1, 1];
+    const colors  = hasData ? MACRO_CONFIG.map(m => m.color)  : [emptyColor, emptyColor, emptyColor];
+    const borders = hasData ? MACRO_CONFIG.map(m => m.border) : [emptyColor, emptyColor, emptyColor];
+
+    chartRef.current = new window.Chart(canvasRef.current, {
+      type: "doughnut",
+      data: {
+        labels: MACRO_CONFIG.map(m => m.label),
+        datasets: [{
+          data,
+          backgroundColor: colors,
+          borderColor: borders,
+          borderWidth: hasData ? 1.5 : 0,
+          hoverOffset: hasData ? 6 : 0,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "62%",
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            enabled: hasData,
+            callbacks: {
+              label: (ctx) => {
+                const pct = Math.round((values[ctx.dataIndex] / total) * 100);
+                return ` ${values[ctx.dataIndex]}g (${pct}%)`;
+              },
+            },
+          },
+        },
+      },
+      plugins: [{
+        id: "centerText",
+        afterDraw(chart) {
+          const { ctx, chartArea: { width, height, left, top } } = chart;
+          const cx = left + width / 2;
+          const cy = top + height / 2;
+          ctx.save();
+          if (hasData) {
+            ctx.font = "500 20px DM Sans, sans-serif";
+            ctx.fillStyle = "#3B2A1A";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(`${total}g`, cx, cy - 8);
+            ctx.font = "400 11px DM Sans, sans-serif";
+            ctx.fillStyle = "#8C7355";
+            ctx.fillText("total", cx, cy + 10);
+          } else {
+            ctx.font = "400 12px DM Sans, sans-serif";
+            ctx.fillStyle = "#8C7355";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("Aucune donnée", cx, cy);
+          }
+          ctx.restore();
+        },
+      }],
+    });
+  }
+
   return (
-    <div className="nt-macro">
-      <div className="nt-macro__header">
-        <span className="nt-macro__label">{label}</span>
-        <span className="nt-macro__val">{value ?? 0} <span className="nt-macro__unit">g</span></span>
+    <div className="nt-donut-wrap">
+      {/* Légende */}
+      <div className="nt-donut-legend">
+        {MACRO_CONFIG.map(m => (
+          <span key={m.key} className="nt-donut-legend__item">
+            <span className="nt-donut-legend__swatch" style={{ background: m.color }} />
+            {m.label}
+            <strong>{today[m.key] ?? 0}g</strong>
+          </span>
+        ))}
       </div>
-      <div className="nt-macro__track">
-        <div className="nt-macro__fill" style={{ width: `${pct}%`, background: color }} />
-      </div>
-      <div className="nt-macro__footer">
-        <span className="nt-macro__pct">{Math.round(pct)}%</span>
-        <span className="nt-macro__max">/ {max}g</span>
+
+      {/* Donut + barres */}
+      <div className="nt-donut-body">
+        <div className="nt-donut-canvas-wrap">
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={`Donut macronutriments — Glucides ${today.glucides ?? 0}g, Protéines ${today.proteines ?? 0}g, Lipides ${today.lipides ?? 0}g`}
+          >
+            {MACRO_CONFIG.map(m => `${m.label} : ${today[m.key] ?? 0}g / ${goals[m.key]}g`).join(" — ")}
+          </canvas>
+        </div>
+
+        {/* Barres détaillées */}
+        <div className="nt-donut-bars">
+          {MACRO_CONFIG.map(m => {
+            const val = today[m.key] ?? 0;
+            const max = goals[m.key];
+            const pct = max > 0 ? Math.min(Math.round((val / max) * 100), 100) : 0;
+            return (
+              <div key={m.key} className="nt-macro-row">
+                <div className="nt-macro-row__header">
+                  <span className="nt-macro-row__label">{m.label}</span>
+                  <span className="nt-macro-row__val">{val}g <span className="nt-macro-row__max">/ {max}g</span></span>
+                </div>
+                <div className="nt-macro-row__track">
+                  <div className="nt-macro-row__fill" style={{ width: `${pct}%`, background: m.color }} />
+                </div>
+                <div className="nt-macro-row__hint">{pct}% · reste {Math.max(max - val, 0)}g</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -148,11 +287,7 @@ export default function Nutrition() {
         {/* ── Macros ── */}
         <div className="nt-card">
           <div className="nt-card__title"><i className="ti ti-chart-pie" aria-hidden="true" />Macronutriments</div>
-          <div className="nt-macros">
-            <MacroBar label="Glucides"   value={today.glucides   ?? 0} max={goals.glucides}   color="#A8C57A" />
-            <MacroBar label="Protéines"  value={today.proteines  ?? 0} max={goals.proteines}  color="#7A9E5C" />
-            <MacroBar label="Lipides"    value={today.lipides    ?? 0} max={goals.lipides}    color="#C47A2A" />
-          </div>
+          <MacroDonut today={today} goals={goals} />
         </div>
       </div>
 
